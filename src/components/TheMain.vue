@@ -2,7 +2,11 @@
     <div>
         <div class="main">
             <div class="container">
-                
+                <div id="movie-container">
+                    <ul class="list-unstyled">
+                        <li v-for></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
