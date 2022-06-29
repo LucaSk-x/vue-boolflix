@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <TheHeader></TheHeader>
-    <TheMain></TheMain>
+    <TheHeader @searchTextChanged="onSearchTextChanged"></TheHeader>
+    <TheMain :movie="movie"></TheMain>
   </div>
 </template>
 
@@ -18,15 +18,33 @@ export default {
     TheHeader,
     TheMain,
   },
-  mounte() {
-    axios.get('https://api.themoviedb.org/3/movie/550',  {
+  data() {
+    return {
+      searchText: "",
+      movieList: [],
+    }
+  },
+
+  methods: {
+    onSearchTextChanged(userInput) {
+      this.searchText = userInput;
+
+    axios
+    .get('https://api.themoviedb.org/3/search/movie?',  {
       params: {
         api_key: 'd3079b4f660d990f446164797fe4dafd',
-        query: 'name film',
+        query: userInput,
         leanguage: 'it-It',
     }
-  }
-)}
+  })
+    .then((resp) => {
+      this.movieList = resp.data.results;
+      });
+    },
+  },
+  mounted() {
+
+  },
 }
 </script>
 

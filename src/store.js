@@ -4,6 +4,7 @@ import axios from "axios";
 let searchText = "";
 
 const state = Vue.observable({
+    searchText: "",
     movieList: [],
     seriesList: [],
 });
