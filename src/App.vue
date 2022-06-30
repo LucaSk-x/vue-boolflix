@@ -57,6 +57,7 @@ export default {
 
 <style lang="scss">
   @import "./assets/scss/main.scss";
+  
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   height: 100vh;
