@@ -9,7 +9,7 @@
                             <div class="card-movie d-flex flex-column justify-content-between">
                                 <img class="w-100 p-2" :src="`${preLink}${movie.poster_path}`" alt="">
                                 <h5 class="text-uppercase text-white text-center">{{movie.title}}</h5>
-                                <h6 class="text-white"> <span class="fi fi-gr"></span> <span class="fi fi-gr fis"></span> </h6>
+                                <h6 class="text-white"> <span class="fi" :class=" 'fi-' +  countryFlag(movie.original_language)"></span></h6>
                                 <h6 class="text-center text-white">
                                     <span v-for="i in 5" :key="i">
                                     <template v-if="i <= fiveStar(movie.vote_average)">
@@ -54,16 +54,23 @@ export default {
             preLink: "http://image.tmdb.org/t/p/w342/",
         }
     },
-    computed: {
-        countryFlag() {
-            return this.movieList.original_language
-        },
-    },
+
     methods: {
         fiveStar(vote) {
             console.log(vote)
             return Math.round(vote / 2)
             
+        },
+            countryFlag(flag) {
+
+                const langsMap = {
+                en: "us",
+                ja: "jp",
+            };
+            if (langsMap[flag]) {
+            return langsMap[flag]
+            }
+            return flag
         },
     }
 }
