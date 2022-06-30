@@ -22,7 +22,7 @@
                             <div class="card-movie d-flex flex-column justify-content-between">
                                 <img class="w-100 p-2" :src="`${preLink}${serie.poster_path}`" alt="">
                                 <h5 class="text-uppercase text-white text-center">{{serie.name}}</h5>
-                                <h6><span class="fi fi-gb"> shit</span></h6>
+                                <h6><span class="fi fi-gb"> </span></h6>
                                 <h6 class="text-center text-white">Voto: <span class="text-warning">{{serie.vote_average}}</span></h6>
                             </div>
                         </li>
