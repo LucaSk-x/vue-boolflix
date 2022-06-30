@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <TheHeader @searchTextChanged="onSearchTextChanged"></TheHeader>
-    <TheMain :movie="movie"></TheMain>
+    <TheMain :movieList="movieList" :seriesList="seriesList"></TheMain>
   </div>
 </template>
 
@@ -22,15 +22,18 @@ export default {
     return {
       searchText: "",
       movieList: [],
+      seriesList: [],
+
     }
   },
 
   methods: {
-    onSearchTextChanged(userInput) {
+    onSearchTextChanged(userInput, type) {
+
       this.searchText = userInput;
 
     axios
-    .get('https://api.themoviedb.org/3/search/movie?',  {
+    .get('https://api.themoviedb.org/3/search/' + type,  {
       params: {
         api_key: 'd3079b4f660d990f446164797fe4dafd',
         query: userInput,
@@ -38,7 +41,11 @@ export default {
     }
   })
     .then((resp) => {
-      this.movieList = resp.data.results;
+      if(type === 'movie') {
+        this.movieList = resp.data.results;
+      } else if (type === 'tv') {
+        this.seriesList = resp.data.results;
+        }
       });
     },
   },
@@ -53,5 +60,6 @@ export default {
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   height: 100vh;
+  background-color: #141414;
 }
 </style>

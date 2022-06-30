@@ -7,7 +7,7 @@
                 </div>
                 <div class="search">
                     <div class="input-group m-3">
-                        <input type="text" class="form-control" placeholder="Titoli, persone, generi" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="userInput">
+                        <input type="text" class="form-control" placeholder="Titoli, persone, generi" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="userInput" v-on:keyup.enter="startSearch">
                         <button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="startSearch">Search</button>
                     </div>
                 </div>
@@ -17,8 +17,6 @@
 </template>
 
 <script>
-    import {state} from "../store"
-
 export default {
     data() {
         return {
@@ -27,9 +25,8 @@ export default {
     },
     methods: {
         startSearch() {
-            state.searchText = this.userInput,
-
-            this.$emit("searchTextChanged", this.userInput)
+            this.$emit("searchTextChanged", this.userInput, 'movie')
+            this.$emit("searchTextChanged", this.userInput, 'tv')
         }
     }
 
